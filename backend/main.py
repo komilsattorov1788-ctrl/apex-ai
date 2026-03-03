@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from api import ai_router, payment_router
@@ -38,6 +40,18 @@ app.include_router(payment_router.router, prefix=settings.API_V1_STR + "/payment
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "security": "AES-256 Enabled", "firewall": "Cloudflare Mock Active"}
+
+# Serve the static frontend files
+app.mount("/assets", StaticFiles(directory="../"), name="assets")
+
+@app.get("/{full_path:path}")
+async def catch_all(full_path: str):
+    import os
+    file_path = os.path.join("..", full_path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return FileResponse(file_path)
+    # Default to index.html for SPA-like behavior or root
+    return FileResponse("../index.html")
     
 if __name__ == "__main__":
     import uvicorn
