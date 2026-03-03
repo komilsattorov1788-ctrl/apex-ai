@@ -105,56 +105,67 @@
 
     <section id="features" class="features container">
         <div class="section-header">
-            <h2>Nega aynan <span class="text-gradient">Apex?</span></h2>
+            <h2>Haqiqiy <span class="text-gradient">Quvvat Markazi</span></h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Zamonaviy texnologiyalarning eng ilg'or namunasi — Bento Grid arxitekturasi asosida qurilgan tizim.</p>
         </div>
-        <div class="features-grid">
-            <!-- Existing Cards -->
-            <div class="feature-card">
-                <i>🧠</i>
-                <h3>Kontekstli Xotira</h3>
-                <p>Sizning loyihalaringiz va afzalliklaringizni abadiy eslab qoladi. Har doim bir xil narsani tushuntirish shart emas.</p>
-            </div>
-            
-            <!-- Apex Sentinel Dashboard (New Enterprise Section) -->
-            <div class="feature-card" style="grid-column: span 2; background: rgba(0, 163, 255, 0.05);">
+        
+        <div class="bento-grid">
+            <!-- Large Hero Bento (Sentinel Dashboard) -->
+            <div class="bento-item bento-large" style="background: rgba(0, 163, 255, 0.05);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="margin: 0;"><span class="status-indicator" style="background:#00f0ff;"></span> Apex Sentinel Dashboard</h3>
-                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">SECURITY: AES-256 ACTIVE</div>
+                    <h3 style="margin: 0; font-size: 1.8rem;">Apex Sentinel Dashboard</h3>
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 4px 10px; border-radius: 20px;">AES-256 ENCRYPTED</div>
                 </div>
-                <div style="grid-template-columns: 1fr 1fr; gap: 20px; display: grid;">
-                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.8rem; height: 120px; overflow: hidden;">
-                        <div style="color: #888; margin-bottom: 10px;">Live Intelligent Logs:</div>
-                        <div id="sentinel-logs">
-                            <div style="color: #27c93f;">[SEC] JWT Auth Verified.</div>
-                            <div style="color: #ffbd2e;">[RAG] Injecting Knowledge Base...</div>
-                        </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 16px; font-family: var(--font-mono); font-size: 0.85rem; height: 180px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                    <div id="sentinel-logs">
+                        <div style="color: #27c93f;">[SEC] Global Handshake Completed.</div>
+                        <div style="color: #00f0ff;">[AI] Orchestrating Node Cluster...</div>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                            <span style="font-size: 0.8rem;">Google Search Node</span>
-                            <span style="color: #27c93f; font-size: 0.7rem;">ONLINE</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                            <span style="font-size: 0.8rem;">Wolfram Alpha Node</span>
-                            <span style="color: #27c93f; font-size: 0.7rem;">READY</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                            <span style="font-size: 0.8rem;">Load Balancer</span>
-                            <span style="color: #00f0ff; font-size: 0.7rem;">Active</span>
-                        </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; text-align: center;">
+                        <div style="color: var(--text-muted); font-size: 0.7rem;">UPTIME</div>
+                        <div style="color: #27c93f; font-weight: 800;">99.99%</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; text-align: center;">
+                        <div style="color: var(--text-muted); font-size: 0.7rem;">THREAT LEVEL</div>
+                        <div style="color: #00f0ff; font-weight: 800;">ZERO</div>
                     </div>
                 </div>
             </div>
 
-            <div class="feature-card">
-                <i>🎬</i>
-                <h3>Kino Sifatida Video</h3>
-                <p>Veo-3 va Sora darajasidagi 4K videolarni bir necha soniya ichida matndan yaratib bera oladi.</p>
+            <!-- Memory Bento (Tall) -->
+            <div class="bento-item bento-tall">
+                <i>🧠</i>
+                <div>
+                    <h3>Chuqur Xotira</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Sizning har bir loyihangizni eslab qoluvchi "Dynamic Memory" tizimi.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <i>🌐</i>
-                <h3>150+ Til Dastagi</h3>
-                <p>Dunyo bo'ylab har qanday tilda, jumladan o'zbek tilida ham o'ta aniqlik bilan muloqot qiladi.</p>
+
+            <!-- Video Bento -->
+            <div class="bento-item">
+                <i>🎬</i>
+                <h3>Video Engine</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">4K Cinematic Video Generation.</p>
+            </div>
+
+            <!-- Multi-Model Bento -->
+            <div class="bento-item bento-wide">
+                <div style="display:flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3>Universal Orchestrator</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">GPT-5, Gemini, Grok va Claude bir joyda.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; font-size: 1.5rem;">🤖 🚀 🌐</div>
+                </div>
+            </div>
+
+            <!-- Extra Small Bento -->
+            <div class="bento-item">
+                <i>🌍</i>
+                <h3>150+ Til</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Tabiiy muloqot.</p>
             </div>
         </div>
     </section>
