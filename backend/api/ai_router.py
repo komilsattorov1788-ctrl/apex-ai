@@ -54,15 +54,35 @@ class ChatResponse(BaseModel):
     task_id: str | None = None
     target_engine: str | None = None 
 
-from fastapi import APIRouter, Depends, HTTPException, status, Header, Body
+# --- Advanced Session & Memory Manager (Enterprise Standard) ---
+class SessionManager:
+    def __init__(self):
+        self.sessions: dict[str, list[dict]] = {}
 
-# ... (omitting irrelevant lines but matching exactly the logic)
+    def get_history(self, session_id: str) -> list[dict]:
+        return self.sessions.get(session_id, [])
+
+    def add_message(self, session_id: str, role: str, content: str):
+        if session_id not in self.sessions:
+            self.sessions[session_id] = []
+        # Keep last 15 turns for performance/context balance
+        self.sessions[session_id].append({"role": role, "content": content})
+        if len(self.sessions[session_id]) > 30:
+            self.sessions[session_id] = self.sessions[session_id][-30:]
+
+history_manager = SessionManager()
+
 @router.post("/chat", response_model=ChatResponse)
 async def ai_chat_completion(
     request: ChatRequest,
     user: TokenData = Depends(get_current_user),
+    session_id: str = Header(default="default-session"),
     idempotency_key: str | None = Header(None, alias="Idempotency-Key", max_length=100)
 ):
+    # Retrieve & Add Context (Enterprise Memory Loop)
+    history = history_manager.get_history(session_id)
+    logging.info(f"Memory Restored: {len(history)} past context turns found for {session_id}")
+
     with tracer.start_as_current_span("ai_chat_completion") as span:
         span.set_attribute("user.id", user.user_id)
 
