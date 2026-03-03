@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (!res.ok) {
-                    throw new Error('Server error');
+                    throw new Error(`Server returned ${res.status}`);
                 }
 
                 const data = await res.json();
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             } catch (err) {
-                await appendLine('sys', '[ERROR] Connection to API failed. Make sure backend is running.', false, false);
+                await appendLine('sys', `[ERROR] Connection failed: ${err.message}`, false, false);
             }
         });
     }

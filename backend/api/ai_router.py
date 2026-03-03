@@ -61,7 +61,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Header, Body
 async def ai_chat_completion(
     request: ChatRequest,
     user: TokenData = Depends(get_current_user),
-    idempotency_key: str = Header(..., alias="Idempotency-Key", max_length=100)
+    idempotency_key: str | None = Header(None, alias="Idempotency-Key", max_length=100)
 ):
     with tracer.start_as_current_span("ai_chat_completion") as span:
         span.set_attribute("user.id", user.user_id)
@@ -118,7 +118,8 @@ async def ai_chat_completion(
         raw_sig_bind = f"{user.user_id}:{payload_hash}"
         
         sig = hmac.new(IDEMP_SECRET.encode('utf-8'), raw_sig_bind.encode('utf-8'), hashlib.sha256).hexdigest()
-        correlation_id = f"{idempotency_key}:{sig}"
+        ik = idempotency_key or str(uuid.uuid4())
+        correlation_id = f"{ik}:{sig}"
         
         # CRITICAL 1 FIX: Identity ↔ Ledger Separation Logical Bug Fixed 100% Natively
         tx_id = hashlib.sha256(correlation_id.encode('utf-8')).hexdigest()[:36]
