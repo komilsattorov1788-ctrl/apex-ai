@@ -138,6 +138,11 @@ async def ai_chat_completion(
         start_exec_time = time.time()
         is_reserved = False
         try:
+            intent_data = await classify_intent(clean_msg)
+            intent = intent_data.get("intent", "chat")
+            target_engine = await route_model(intent, clean_msg, 1.0)
+            cost = 5 if intent in ["video", "image"] else 1
+            
             # SOT Explicit DB insertion via SqlAlchemy properly completely safely blocking duplicates implicitly
             is_reserved = await reserve_credits(
                 user.user_id, cost, tx_id, traceparent=str(span.get_span_context().trace_id), intent=intent
