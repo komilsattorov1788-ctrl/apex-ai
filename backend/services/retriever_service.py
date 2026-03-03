@@ -1,7 +1,7 @@
-import numpy as np
 import logging
 
 try:
+    import numpy as np
     import faiss
     from sentence_transformers import SentenceTransformer
     HAS_RAG = True
