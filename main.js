@@ -19,6 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Theme switched to: ${themeName}`);
     };
 
+    // Advanced Parallax & Mouse Tracking
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 45;
+        const y = (window.innerHeight / 2 - e.pageY) / 45;
+        
+        document.documentElement.style.setProperty('--move-x', `${x}deg`);
+        document.documentElement.style.setProperty('--move-y', `${y}deg`);
+    });
+
+    // Real-time Global Matrix Simulation
+    const reqElem = document.getElementById('stat-requests');
+    const latElem = document.getElementById('stat-latency');
+    if(reqElem && latElem) {
+        setInterval(() => {
+            let current = parseInt(reqElem.innerText.replace(/,/g, ''));
+            reqElem.innerText = (current + Math.floor(Math.random() * 5)).toLocaleString();
+            latElem.innerText = (38 + Math.floor(Math.random() * 8)) + 'ms';
+        }, 2000);
+    }
+
     // Smart Navbar Background
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {

@@ -66,12 +66,61 @@ body.theme-aurora {
     --glass-border: rgba(56, 189, 248, 0.2);
 }
 
+/* UI Constants & Dynamic Assets */
 :root {
-    /* UI Constants */
-    --neon-glow: 0 0 15px rgba(0, 240, 255, 0.4);
+    --neon-glow: 0 0 25px rgba(0, 163, 255, 0.4);
     --font-heading: 'Inter', system-ui, sans-serif;
     --font-mono: 'Fira Code', monospace;
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    
+    /* Parallax Tracking */
+    --move-x: 0deg;
+    --move-y: 0deg;
+}
+
+/* --- Interactive Parallax Wrapper --- */
+.parallax-layer {
+    transform: perspective(1000px) rotateY(var(--move-x)) rotateX(var(--move-y));
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+/* --- Global Matrix Section --- */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.status-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    padding: 20px;
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+    text-align: left;
+}
+
+.status-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: var(--accent-cyan);
+}
+
+.status-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.status-value { font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-main); }
+.status-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+
+/* Animation: Floating 3D */
+@keyframes float-complex {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    33% { transform: translateY(-15px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.hero-image img {
+    animation: float-complex 8s ease-in-out infinite;
 }
 
 * {
