@@ -28,15 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--move-y', `${y}deg`);
     });
 
-    // Real-time Global Matrix Simulation
-    const reqElem = document.getElementById('stat-requests');
-    const latElem = document.getElementById('stat-latency');
-    if(reqElem && latElem) {
+    // Sentinel Live Logging
+    const sentinelLogs = document.getElementById('sentinel-logs');
+    if(sentinelLogs) {
+        const logMsgs = [
+            {t: "[SEC] AES-256 Encryption handshake...", c: "#00f0ff"},
+            {t: "[API] Routing to GPT-5 Cluster...", c: "#27c93f"},
+            {t: "[DB] Idempotency lock acquired.", c: "#888"},
+            {t: "[RAG] Scraping Google Search Node...", c: "#ffbd2e"},
+            {t: "[SYS] Load Balancer: Traffic rerouted.", c: "#00f0ff"},
+            {t: "[AI] Analyzing Consensus from 4 nodes...", c: "#b026ff"}
+        ];
         setInterval(() => {
-            let current = parseInt(reqElem.innerText.replace(/,/g, ''));
-            reqElem.innerText = (current + Math.floor(Math.random() * 5)).toLocaleString();
-            latElem.innerText = (38 + Math.floor(Math.random() * 8)) + 'ms';
-        }, 2000);
+            const msg = logMsgs[Math.floor(Math.random() * logMsgs.length)];
+            const div = document.createElement('div');
+            div.style.color = msg.c;
+            div.innerText = msg.t;
+            sentinelLogs.prepend(div);
+            if(sentinelLogs.children.length > 8) sentinelLogs.lastElementChild.remove();
+        }, 3000);
     }
 
     // Smart Navbar Background

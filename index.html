@@ -113,11 +113,44 @@
             <h2>Nega aynan <span class="text-gradient">Apex?</span></h2>
         </div>
         <div class="features-grid">
+            <!-- Existing Cards -->
             <div class="feature-card">
                 <i>🧠</i>
                 <h3>Kontekstli Xotira</h3>
                 <p>Sizning loyihalaringiz va afzalliklaringizni abadiy eslab qoladi. Har doim bir xil narsani tushuntirish shart emas.</p>
             </div>
+            
+            <!-- Apex Sentinel Dashboard (New Enterprise Section) -->
+            <div class="feature-card" style="grid-column: span 2; background: rgba(0, 163, 255, 0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;"><span class="status-indicator" style="background:#00f0ff;"></span> Apex Sentinel Dashboard</h3>
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">SECURITY: AES-256 ACTIVE</div>
+                </div>
+                <div style="grid-template-columns: 1fr 1fr; gap: 20px; display: grid;">
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; font-family: var(--font-mono); font-size: 0.8rem; height: 120px; overflow: hidden;">
+                        <div style="color: #888; margin-bottom: 10px;">Live Intelligent Logs:</div>
+                        <div id="sentinel-logs">
+                            <div style="color: #27c93f;">[SEC] JWT Auth Verified.</div>
+                            <div style="color: #ffbd2e;">[RAG] Injecting Knowledge Base...</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <span style="font-size: 0.8rem;">Google Search Node</span>
+                            <span style="color: #27c93f; font-size: 0.7rem;">ONLINE</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <span style="font-size: 0.8rem;">Wolfram Alpha Node</span>
+                            <span style="color: #27c93f; font-size: 0.7rem;">READY</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <span style="font-size: 0.8rem;">Load Balancer</span>
+                            <span style="color: #00f0ff; font-size: 0.7rem;">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="feature-card">
                 <i>🎬</i>
                 <h3>Kino Sifatida Video</h3>
