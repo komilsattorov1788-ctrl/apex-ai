@@ -246,8 +246,9 @@ class ModelMultiplexer:
         # MOCK FALLBACK for Demo Stability (CRITICAL PROD BYPASS)
         # If all real providers failed, return a smart mock response
         logger.warning(f"[Multiplexer] Real providers failed, using Mock fallback. Chain: {error_chain}")
+        err_hint = " | Errors: " + ", ".join(error_chain[:2]) if error_chain else ""
         return MultiplexedResponse(
-            content=f"[DEMO MODE] I received your message: '{message[:50]}...'. To enable real AI responses, please configure your OPENAI_API_KEY in Railway settings.",
+            content=f"[DEMO MODE] I received your message: '{message[:50]}...'. To enable real AI responses, please configure your OPENAI_API_KEY in Railway settings.{err_hint}",
             provider_used="mock_system",
             model_used="mock-gpt-4o",
             latency_ms=150.0,

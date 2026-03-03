@@ -57,7 +57,12 @@ app.include_router(payment_router.router, prefix=settings.API_V1_STR + "/payment
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok", "security": "AES-256 Enabled", "firewall": "Cloudflare Mock Active"}
+    import os
+    return {
+        "status": "ok", 
+        "ai_key_active": bool(os.getenv("OPENAI_API_KEY")),
+        "security": "AES-256 Enabled"
+    }
 
 # Serve the static frontend files
 app.mount("/assets", StaticFiles(directory="./"), name="assets")
