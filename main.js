@@ -120,7 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (!res.ok) {
-                    throw new Error(`Server returned ${res.status}`);
+                    const errorData = await res.json().catch(() => ({}));
+                    throw new Error(`Server returned ${res.status}: ${errorData.detail || errorData.message || 'Unknown'}`);
                 }
 
                 const data = await res.json();
