@@ -20,11 +20,9 @@ RUN pip install --upgrade pip && \
 # Copy the entire project so static assets and backend are available
 COPY . /app/
 
-# Expose standard port. Railway will provide its own $PORT variable at runtime
+# Port for Railway
 ENV PORT=8000
 EXPOSE 8000
 
-# Move into backend to run the startup script, allowing main.py to serve frontend files from ../
-WORKDIR /app/backend
-
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+# Start from the root to correctly resolve static files and database
+CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port ${PORT}"]
