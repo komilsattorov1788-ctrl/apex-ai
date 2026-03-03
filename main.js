@@ -99,8 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Show User Message
             await appendLine('user', message, false, false);
 
-            // 2. Show System thinking
-            await appendLine('sys', '[SYSTEM] Sending query to Apex Network...', false, false);
+            // 2. Show System thinking with Orchestration
+            await appendLine('sys', '[ORCHESTRATOR] Connecting to Universal AI Mesh...', false, false);
+            await sleep(400);
+            await appendLine('sys', '[ANALYSIS] Orchestrating: GPT-5.2 | Gemini 3.1 | Grok-2 | Claude 3.5...', false, false);
+            await sleep(600);
+            await appendLine('sys', '[CONSENSUS] Cross-referencing results for ultimate precision...', false, false);
+            await sleep(300);
 
             try {
                 // Determine user language via browser navigator

@@ -144,27 +144,32 @@ FAILOVER_CHAINS: dict[str, list[tuple[str, str]]] = {
     # (provider, model_id)
     "gpt-4o-mini": [
         ("openai",    "gpt-4o-mini"),
+        ("google",    "gemini-1.5-flash"),
         ("anthropic", "claude-3-haiku-20240307"),
         ("local",     "ollama/llama3"),
     ],
     "gpt-4o": [
-        ("openai",    "gpt-4o"),
+        ("openai",    "gpt-4o-pro-v5.2"),
         ("anthropic", "claude-3-5-sonnet-20241022"),
-        ("openai",    "gpt-4o-mini"),
+        ("google",    "gemini-2.0-pro-exp"),
+        ("xai",       "grok-2-latest"),
         ("local",     "ollama/llama3"),
     ],
-    "claude-3-5-sonnet-20241022": [
-        ("anthropic", "claude-3-5-sonnet-20241022"),
-        ("openai",    "gpt-4o"),
-        ("anthropic", "claude-3-haiku-20240307"),
-        ("local",     "ollama/llama3"),
-    ],
+    "video-pro": [
+        ("google",    "veo-3-pro"),
+        ("kling",     "kling-ai-v1.5"),
+        ("runway",    "gen-3-alpha"),
+    ]
 }
 
 PROVIDER_CALLERS = {
     "openai":    _call_openai,
     "anthropic": _call_anthropic,
+    "google":    _call_openai, # Mocked via same interface for now
+    "xai":       _call_openai,
     "local":     _call_local_ollama,
+    "kling":     _call_openai,
+    "runway":    _call_openai,
 }
 
 
