@@ -10,16 +10,24 @@
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Variant 1: Crystal Light (Apple Style) */
+/* Variant 1: Apex Crystal Absolute (AURA Style - Ideal) */
 body.theme-crystal {
-    --bg-deep: #f5f7fa;
-    --bg-card: rgba(255, 255, 255, 0.8);
-    --accent-cyan: #007aff;
-    --accent-purple: #5856d6;
-    --accent-blue: #0040dd;
-    --text-main: #1d1d1f;
-    --text-muted: #86868b;
-    --glass-border: rgba(0, 0, 0, 0.08);
+    --bg-deep: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.4);
+    --accent-cyan: #00a3ff;
+    --accent-purple: #7000ff;
+    --accent-blue: #0057ff;
+    --text-main: #0a0a0b;
+    --text-muted: #64748b;
+    --glass-border: rgba(0, 163, 255, 0.15);
+}
+
+body.theme-crystal .bg-mesh {
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 163, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
+        #f8fafc;
+    filter: blur(100px);
 }
 
 /* Variant 2: Neon Sunset (Vibrant) */
@@ -358,19 +366,20 @@ body {
 
 .feature-card {
     background: var(--bg-card);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(25px) saturate(180%);
     border: 1px solid var(--glass-border);
     padding: 40px;
-    border-radius: 24px;
+    border-radius: 30px;
     transition: var(--transition-smooth);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(1.02);
     border-color: var(--accent-cyan);
-    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 163, 255, 0.15);
 }
 
 .feature-card i {
