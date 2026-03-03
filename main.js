@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Theme Switcher Logic for Preview
+    window.setTheme = (themeName) => {
+        document.body.className = themeName === 'default' ? '' : `theme-${themeName}`;
+        console.log(`Theme switched to: ${themeName}`);
+    };
+
     // Smart Navbar Background
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
