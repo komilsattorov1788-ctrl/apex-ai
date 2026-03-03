@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from api import ai_router, payment_router
 from core.config import get_settings
+from database.database import Base, master_engine
+from database import models # Force model registration
 
 settings = get_settings()
 
@@ -12,6 +14,12 @@ settings = get_settings()
 async def lifespan(app: FastAPI):
     # Load Models and connect to Stripe/DB here
     print(f"[{settings.PROJECT_NAME}] Starting up Secure Environment v{settings.VERSION}")
+    
+    # Automatic table creation for production resilience
+    async with master_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    print("[SYSTEM] Database tables initialized successfully.")
+    
     yield
     # Cleanup DB connection on shutdown
     print(f"[{settings.PROJECT_NAME}] Shutting down...")

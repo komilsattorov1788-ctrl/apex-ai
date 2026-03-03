@@ -112,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Idempotency-Key': 'demo-' + Math.random().toString(36).substring(7),
+                        'Authorization': 'Bearer mock-demo-token'
                     },
                     body: JSON.stringify({ message: message, model: "gpt-4o", language: userLang })
                 });
