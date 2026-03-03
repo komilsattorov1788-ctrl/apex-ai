@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Contact Python Backend (Railway Server API)
-                const res = await fetch(`https://apex-ai-backend-production.up.railway.app/api/v1/ai/chat`, {
+                const res = await fetch(`/api/v1/ai/chat`, {
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = "0.7";
 
             try {
-                const res = await fetch('https://apex-ai-backend-production.up.railway.app/api/v1/payments/create-checkout-session', {
+                const res = await fetch(`/api/v1/payments/create-checkout-session`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
