@@ -48,37 +48,32 @@
     </nav>
 
     <header class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <div class="hero-badge">
-                    <span class="dot green"></span>
-                    Apex Orchestrator v2.0 Live
-                </div>
-                <h1>Sun'iy Intellekt Kelajagi. <br><span class="text-gradient">Soddalashtirilgan.</span></h1>
-                <p>Murakkab jarayonlarni soniyalar ichida tahlil qiling. Apex AI - bu sizning biznesingiz va ijodingiz uchun eng mukammal ekotizim.</p>
-                <div class="hero-buttons">
-                    <a href="#join" class="btn btn-primary">Bepul boshlang</a>
-                    <a href="#demo" class="btn btn-outline">Demo tahlil</a>
-                </div>
-                
-                <!-- Global Intelligence Matrix -->
-                <div class="status-grid">
-                    <div class="status-card">
-                        <div class="status-label"><span class="status-indicator" style="background:var(--accent-cyan); box-shadow:0 0 10px var(--accent-cyan);"></span>Global Requests</div>
-                        <div class="status-value" id="stat-requests">1,240,482</div>
-                    </div>
-                    <div class="status-card">
-                        <div class="status-label"><span class="status-indicator" style="background:#27c93f; box-shadow:0 0 10px #27c93f;"></span>Nodes Active</div>
-                        <div class="status-value">150+ Countries</div>
-                    </div>
-                    <div class="status-card">
-                        <div class="status-label"><span class="status-indicator" style="background:var(--accent-purple); box-shadow:0 0 10px var(--accent-purple);"></span>Avg. Latency</div>
-                        <div class="status-value" id="stat-latency">42ms</div>
-                    </div>
-                </div>
+        <div class="hero-image-wrap">
+            <img src="banner.png" alt="Apex Neural Core">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="hero-badge" style="margin: 0 auto 24px;">
+                <span class="dot green"></span>
+                Apex Orchestrator v2.0 Live
             </div>
-            <div class="hero-image parallax-layer">
-                <img src="banner.png" alt="Apex AI Absolute Preview" style="filter: drop-shadow(0 0 50px rgba(0, 163, 255, 0.2));">
+            <h1>Sun'iy Intellekt <span class="text-gradient">Markazi</span></h1>
+            <p>Xuddi Google kabi oson, lekin undan million marta aqlli. Apex AI bilan dunyo bilimlarini tahlil qiling.</p>
+            
+            <form class="central-search-wrap" id="main-search-form">
+                <input type="text" id="main-search-input" class="search-input-main" placeholder="Loyiha haqida so'rang, video yarating yoki kod yozing..." autocomplete="off">
+                <button type="submit" class="search-btn-overlay">So'rash</button>
+            </form>
+
+            <!-- Global Intelligence Matrix (Simplified for Hero) -->
+            <div class="status-grid" style="justify-content: center; margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div class="status-card">
+                    <div class="status-label">Global Requests</div>
+                    <div class="status-value" id="stat-requests">1,240,482</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-label">Nodes Active</div>
+                    <div class="status-value">150+ Countries</div>
+                </div>
             </div>
         </div>
     </header>

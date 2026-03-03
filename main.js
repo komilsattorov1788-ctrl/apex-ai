@@ -201,6 +201,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Connect Central Search to Terminal
+    const mainSearchForm = document.getElementById('main-search-form');
+    const mainSearchInput = document.getElementById('main-search-input');
+    const termInput = document.getElementById('terminal-user-input');
+    const termForm = document.getElementById('terminal-input-form');
+
+    if (mainSearchForm && mainSearchInput && termInput && termForm) {
+        mainSearchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = mainSearchInput.value.trim();
+            if (!val) return;
+            
+            // Sync value to terminal and scroll
+            termInput.value = val;
+            const demoSection = document.getElementById('demo');
+            window.scrollTo({ top: demoSection.offsetTop - 80, behavior: 'smooth' });
+            
+            // Trigger terminal submit
+            setTimeout(() => {
+                termForm.dispatchEvent(new Event('submit'));
+                mainSearchInput.value = ''; // clear main
+            }, 600);
+        });
+    }
+
     // Initialize with a welcome message
     appendLine('sys', 'APEX AI Terminal v1.0 initialized.');
 

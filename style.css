@@ -228,60 +228,97 @@ body {
 }
 
 /* --- Hero Section --- */
+/* --- Hero Section - Google Engine Style --- */
 .hero {
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding-top: 80px;
-    position: relative;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 60px;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--accent-cyan);
-    padding: 6px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    animation: slideIn 0.8s ease-out;
+    text-align: center;
+    padding: 0 24px;
+    z-index: 10;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    line-height: 1.1;
+    font-size: 3.8rem;
     font-weight: 800;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     letter-spacing: -2px;
 }
 
-.text-gradient {
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 40px;
-    max-width: 500px;
+    margin-bottom: 48px;
+    max-width: 600px;
 }
 
-.hero-buttons {
-    display: flex;
-    gap: 20px;
+/* Centralized AI Search Bar */
+.central-search-wrap {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    margin: 0 auto;
+    transition: var(--transition-smooth);
+}
+
+.central-search-wrap:focus-within {
+    transform: scale(1.02);
+}
+
+.search-input-main {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    padding: 22px 30px;
+    padding-right: 140px;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    outline: none;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    transition: var(--transition-smooth);
+}
+
+.search-input-main:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 30px rgba(0, 163, 255, 0.2);
+}
+
+.search-btn-overlay {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: #000;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 32px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 163, 255, 0.3);
+}
+
+.search-btn-overlay:hover {
+    filter: brightness(1.1);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.hero-image-wrap {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    opacity: 0.6;
+    width: 400px;
+    filter: blur(2px) grayscale(0.5);
+    animation: float-complex 10s ease-in-out infinite;
 }
 
 .btn {
