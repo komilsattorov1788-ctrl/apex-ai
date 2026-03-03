@@ -16,69 +16,83 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="bg-grid"></div>
-    <div class="ambient-side-glow glow-left"></div>
-    <div class="ambient-side-glow glow-right"></div>
-    <img src="side_asset.png" class="side-asset side-asset-l" alt="">
-    <img src="side_asset.png" class="side-asset side-asset-r" alt="">
-    
+<body class="theme-crystal">
+    <!-- Clean modern background elements for AURA style -->
     <div class="bg-mesh"></div>
-    <div class="bg-stars"></div>
 
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <div class="logo-wrap">
-                <img src="logo.png" alt="Apex AI Logo">
-                <span>Apex <span class="text-gradient">AI</span></span>
+            <div class="logo-wrap" style="color: var(--text-main); font-size: 1.6rem;">
+                <span style="color: var(--accent-cyan);">✨</span> AURA
             </div>
             
-            <!-- Dynamic Theme Picker -->
-            <div class="theme-picker" style="display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 20px; border: 1px solid var(--glass-border);">
-                <button onclick="setTheme('default')" style="width:20px; height:20px; border-radius:50%; background:#050505; border:1px solid #fff; cursor:pointer;" title="Cyber Dark"></button>
-                <button onclick="setTheme('crystal')" style="width:20px; height:20px; border-radius:50%; background:#f5f7fa; border:1px solid #ccc; cursor:pointer;" title="Crystal Light"></button>
-                <button onclick="setTheme('sunset')" style="width:20px; height:20px; border-radius:50%; background:linear-gradient(45deg, #ff007c, #ff8e3c); border:none; cursor:pointer;" title="Neon Sunset"></button>
-                <button onclick="setTheme('mint')" style="width:20px; height:20px; border-radius:50%; background:#00c896; border:none; cursor:pointer;" title="Electric Mint"></button>
-                <button onclick="setTheme('aurora')" style="width:20px; height:20px; border-radius:50%; background:#38bdf8; border:none; cursor:pointer;" title="Cyber Aurora"></button>
-            </div>
-
             <ul class="nav-links">
-                <li><a href="#features">Xususiyatlar</a></li>
-                <li><a href="#demo">Interaktiv Demo</a></li>
-                <li><a href="#pricing">Narxlar</a></li>
+                <li><a href="#product">Product</a></li>
+                <li><a href="#platform">Platform</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
             <div class="nav-cta">
-                <a href="#join" class="btn btn-primary">Hozir qo'shiling</a>
+                <a href="#join" class="btn btn-outline" style="border-radius: 50px; font-weight: 500; padding: 10px 24px; background: rgba(255,255,255,0.5);">Get Started</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-image-wrap">
-            <img src="banner.png" alt="Apex Neural Core">
-        </div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="hero-badge" style="margin: 0 auto 24px;">
-                <span class="dot green"></span>
-                Apex Orchestrator v2.0 Live
-            </div>
-            <h1>Sun'iy Intellekt <span class="text-gradient">Markazi</span></h1>
-            <p>Xuddi Google kabi oson, lekin undan million marta aqlli. Apex AI bilan dunyo bilimlarini tahlil qiling.</p>
-            
-            <form class="central-search-wrap" id="main-search-form">
-                <input type="text" id="main-search-input" class="search-input-main" placeholder="Loyiha haqida so'rang, video yarating yoki kod yozing..." autocomplete="off">
-                <button type="submit" class="search-btn-overlay">So'rash</button>
-            </form>
-
-            <!-- Global Intelligence Matrix (Simplified for Hero) -->
-            <div class="status-grid" style="justify-content: center; margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div class="status-card">
-                    <div class="status-label">Global Requests</div>
-                    <div class="status-value" id="stat-requests">1,240,482</div>
+    <header class="aura-hero">
+        <div class="container">
+            <div class="aura-hero-grid">
+                <!-- Left Text Content -->
+                <div class="aura-hero-content">
+                    <h1>The Future of AI.<br>Simplified.</h1>
+                    <p>Intelligent solutions for the next generation.<br>Empowering innovation with sophisticated technology.</p>
+                    <div class="aura-hero-buttons">
+                        <a href="#explore" class="btn btn-primary" style="border-radius: 50px; font-weight: 500; background: rgba(200, 230, 255, 0.8); color: #000; box-shadow: none;">Explore Aura AI</a>
+                        <a href="#demo" class="btn btn-outline" style="border: none; font-weight: 600; padding-left: 10px;">▶ Watch Demo</a>
+                    </div>
                 </div>
-                <div class="status-card">
-                    <div class="status-label">Nodes Active</div>
-                    <div class="status-value">150+ Countries</div>
+                
+                <!-- Right Visual Content -->
+                <div class="aura-hero-visual">
+                    <img src="banner.png" alt="Neural Interface" class="main-brain-img">
+                    
+                    <!-- The 2-3 extra floating images requested -->
+                    <div class="floating-img float-data">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2867/2867295.png" alt="Data">
+                        <span>Data</span>
+                    </div>
+                    <div class="floating-img float-analyze">
+                        <img src="https://cdn-icons-png.flaticon.com/512/10435/10435137.png" alt="Analyze">
+                        <span>Analyze</span>
+                    </div>
+                    <div class="floating-img float-compute">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8755/8755695.png" alt="Compute">
+                        <span>Compute</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The 3 Cards exactly as shown in the Aura Image -->
+            <div class="aura-cards-grid">
+                <div class="aura-card">
+                    <div class="aura-icon">📊</div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Predictive analytics chart chart., networksmm algorithms, predictive analytics.</p>
+                    <a href="#">Learn more &gt;</a>
+                </div>
+                
+                <div class="aura-card">
+                    <div class="aura-icon">🧠</div>
+                    <h3>Neural Networks</h3>
+                    <p>Intelligent solutions for the next generation. Empowering networks are technology.</p>
+                    <a href="#">Learn more &gt;</a>
+                </div>
+                
+                <div class="aura-card">
+                    <div class="aura-icon">⚙️</div>
+                    <h3>Workflow Automation</h3>
+                    <p>Workflow automation on gears and therm process for workflow iot automations.</p>
+                    <a href="#">Learn more &gt;</a>
                 </div>
             </div>
         </div>

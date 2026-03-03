@@ -319,98 +319,143 @@ body {
     text-shadow: var(--neon-glow);
 }
 
-/* --- Hero Section --- */
-/* --- Hero Section - Google Engine Style --- */
-.hero {
-    height: 100vh;
+/* --- AURA Hero Section --- */
+.aura-hero {
+    min-height: 100vh;
+    padding: 140px 0 60px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 0 24px;
+    position: relative;
     z-index: 10;
 }
 
-.hero h1 {
-    font-size: 3.8rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
+.aura-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
 }
 
-.hero p {
+.aura-hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+    color: var(--text-main);
+}
+
+.aura-hero-content h1 span {
+    color: var(--accent-cyan);
+}
+
+.aura-hero-content p {
     font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 48px;
-    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 500px;
 }
 
-/* Centralized AI Search Bar */
-.central-search-wrap {
-    width: 100%;
-    max-width: 720px;
+.aura-hero-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.aura-hero-visual {
     position: relative;
-    margin: 0 auto;
-    transition: var(--transition-smooth);
-}
-
-.central-search-wrap:focus-within {
-    transform: scale(1.02);
-}
-
-.search-input-main {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-brain-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    /* Soft floating animation */
+    animation: float-complex 8s ease-in-out infinite;
+    mix-blend-mode: luminosity;
+    filter: contrast(1.1) brightness(1.1);
+}
+
+/* Floating Images (Data, Analyze, Compute) */
+.floating-img {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 10px 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    color: #333;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: float 6s ease-in-out infinite;
+}
+
+.float-data { top: 10%; left: 10%; animation-delay: 0s; }
+.float-analyze { top: -5%; right: 10%; animation-delay: 2s; }
+.float-compute { bottom: 10%; right: 5%; animation-delay: 4s; }
+
+/* AURA Bottom Cards */
+.aura-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+}
+
+.aura-card {
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(20px);
-    padding: 22px 30px;
-    padding-right: 140px;
-    border-radius: 40px;
-    font-size: 1.2rem;
-    color: var(--text-main);
-    font-family: var(--font-heading);
-    outline: none;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     transition: var(--transition-smooth);
 }
 
-.search-input-main:focus {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 30px rgba(0, 163, 255, 0.2);
+.aura-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 50px rgba(0, 163, 255, 0.1);
 }
 
-.search-btn-overlay {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-    color: #000;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 32px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 163, 255, 0.3);
+.aura-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.8);
+    display: inline-block;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.search-btn-overlay:hover {
-    filter: brightness(1.1);
-    transform: translateY(-50%) scale(1.05);
+.aura-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: #111;
 }
 
-.hero-image-wrap {
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
-    opacity: 0.6;
-    width: 400px;
-    filter: blur(2px) grayscale(0.5);
-    animation: float-complex 10s ease-in-out infinite;
+.aura-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.aura-card a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
 }
 
 .btn {
@@ -444,17 +489,6 @@ body {
 .btn-outline:hover {
     background: rgba(255,255,255,0.05);
     border-color: var(--text-main);
-}
-
-.hero-image {
-    position: relative;
-    animation: float 6s ease-in-out infinite;
-}
-
-.hero-image img {
-    width: 100%;
-    border-radius: 24px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5), var(--neon-glow);
 }
 
 /* --- Terminal Experience --- */
