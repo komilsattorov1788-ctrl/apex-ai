@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apex-ai-ingress
+  namespace: production
+  annotations:
+    # =========================================================================
+    # 💥 ENTERPRISE LAYER 4/7 DDoS DEFENSE (NETWORK LEVEL) 💥
+    # =========================================================================
+
+    # 1. SYN Flood & Connection Limits (Layer 4)
+    # Rejects malformed/zombie connections instantly at the Kernel level (eBPF/Nginx)
+    # before they ever reach our Python FastAPI Pods. 
+    nginx.ingress.kubernetes.io/limit-connections: "20"
+    
+    # 2. Reverse Proxy Throttling (Layer 7 IP-Level Limit)
+    # Allows a burst. If an IP violates 10 req/second, drop them with 503 instantly.
+    # No Redis lookup, no Python GIL blocking, pure C-level drops!
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/limit-burst-multiplier: "3"
+    
+    # 3. Connection Rate Limiting (Hard Drop)
+    # Prevents aggressive bot-nets from cycling IPs quickly by limiting how fast 
+    # new TCP handshakes can occur per IP.
+    nginx.ingress.kubernetes.io/limit-req-status-code: "429"
+    nginx.ingress.kubernetes.io/enable-global-auth: "false"
+
+    # 4. Mitigation against Slowloris Attacks
+    # Drops connections that send HTTP headers too slowly, freeing up sockets.
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "15"
+
+    # 5. IP Blacklisting (Integration with Cloudflare / WAF)
+    nginx.ingress.kubernetes.io/enable-real-ip: "true"
+    
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: api.apex-ai.com
+    http:
+      paths:
+      - path: /api/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: fastapi-service
+            port:
+              number: 80

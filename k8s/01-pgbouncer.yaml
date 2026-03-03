@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: neural-sync-prod
+spec:
+  replicas: 3 # Highly available PgBouncer instances
+  selector:
+    matchLabels:
+      app: pgbouncer
+  template:
+    metadata:
+      labels:
+        app: pgbouncer
+    spec:
+      containers:
+      - name: pgbouncer
+        image: edoburu/pgbouncer:latest
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: MASTER_DATABASE_URL
+        - name: POOL_MODE
+          value: transaction # CRITICAL for high concurrency asyncpg
+        - name: MAX_CLIENT_CONN
+          value: "10000" # Support up to 10k connections simultaneously from FastAPI HPA pods
+        - name: DEFAULT_POOL_SIZE
+          value: "200" # Actual database connections maxing out at 200
+        ports:
+        - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgbouncer-service
+  namespace: neural-sync-prod
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: pgbouncer

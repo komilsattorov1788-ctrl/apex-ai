@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neural-sync-fastapi
+  namespace: neural-sync-prod
+spec:
+  replicas: 10 # Starting point
+  selector:
+    matchLabels:
+      app: fastapi-backend
+  template:
+    metadata:
+      labels:
+        app: fastapi-backend
+    spec:
+      containers:
+      - name: fastapi
+        image: your-docker-registry/neural-sync-ai:latest
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m" # Exactly 1 vCPU max
+            memory: "1Gi"
+        env:
+        - name: DATABASE_URL 
+          value: "postgresql+asyncpg://user:pass@pgbouncer-service.neural-sync-prod.svc.cluster.local:5432/db?prepared_statement_cache_size=0"
+          # Notice: Pointing to PgBouncer, passing prepared_statement_cache_size=0 for transaction pooling compatibility!
+        - name: REPLICA_DATABASE_URL
+          value: "postgresql+asyncpg://user:pass@pgbouncer-read-replica.neural-sync-prod.svc.cluster.local:5432/db?prepared_statement_cache_size=0"
+        - name: REDIS_CLUSTER_NODES
+          value: "redis-cluster-0.redis-service:6379,redis-cluster-1.redis-service:6379,redis-cluster-2.redis-service:6379"
+---
+# Horizontal Pod Autoscaler Configuration
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fastapi-hpa
+  namespace: neural-sync-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: neural-sync-fastapi
+  minReplicas: 10
+  maxReplicas: 1000 # Up to 1000 dynamically scaled stateless pods!
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70 # Scale out when CPU hits 70%

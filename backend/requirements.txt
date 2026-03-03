@@ -1,0 +1,33 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.4
+pydantic-settings==2.3.4
+
+# Security / JWT
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+
+# AI APIs
+openai==1.35.3
+anthropic==0.30.1
+
+# Database
+SQLAlchemy==2.0.31
+asyncpg==0.29.0
+alembic==1.13.2
+
+# Payment & Marketing
+stripe==10.1.0
+httpx==0.27.0
+redis==5.0.3
+
+# Enterprise Features
+celery==5.4.0
+opentelemetry-api==1.39.1
+aiosqlite==0.20.0
+
+# DATA PLANE
+# httpx already included above (Ollama local calls)
+# openai, anthropic already included above (multiplexer)
+# redis already included above (semantic cache)
