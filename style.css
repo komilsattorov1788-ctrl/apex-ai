@@ -113,10 +113,27 @@ p.lead {
     font-weight: 500;
     font-size: 0.95rem;
     transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    transition: width 0.3s ease;
+    border-radius: 2px;
 }
 
 .nav-links a:hover {
     color: #fff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .btn {
@@ -134,14 +151,17 @@ p.lead {
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+    background-size: 200% auto;
     color: #fff;
     box-shadow: 0 4px 20px rgba(176, 38, 255, 0.3);
+    transition: all 0.4s ease;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(176, 38, 255, 0.5);
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(176, 38, 255, 0.6);
 }
 
 .btn-secondary {
@@ -149,11 +169,14 @@ p.lead {
     color: #fff;
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
 }
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Background Glow Effects */
@@ -247,6 +270,7 @@ section {
     from {
         text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
     }
+
     to {
         text-shadow: 0 0 20px rgba(176, 38, 255, 0.8), 0 0 40px rgba(176, 38, 255, 0.6);
     }
@@ -297,8 +321,8 @@ section {
 
 .feature-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.1);
 }
 
 .feature-icon {
@@ -338,6 +362,12 @@ section {
     text-align: left;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.1);
     overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.terminal-mockup:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 240, 255, 0.3), 0 0 0 1px rgba(0, 240, 255, 0.4);
+    transform: translateY(-4px);
 }
 
 .terminal-header {
@@ -457,6 +487,7 @@ section {
 
 .pricing-card:hover {
     transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(176, 38, 255, 0.1);
 }
 
 .pricing-card:not(.popular):hover {
@@ -539,6 +570,13 @@ section {
     padding: 80px 40px;
     position: relative;
     overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.cta-box:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(0, 240, 255, 0.15);
+    transform: translateY(-5px);
 }
 
 .cta-box::before {
