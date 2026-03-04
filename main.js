@@ -199,15 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
             await sleep(300);
 
             try {
-                // Determine user language via browser navigator
-                let userLang = 'en';
-                if (navigator.language) {
-                    const langMatch = navigator.language.split('-')[0].toLowerCase();
-                    const supportedLangs = ['uz', 'ru', 'en', 'tr', 'es', 'zh', 'fr', 'de', 'ja', 'ar'];
-                    if (supportedLangs.includes(langMatch)) {
-                        userLang = langMatch;
-                    }
+                // Optional check for token before hit
+                const token = localStorage.getItem('apex_ai_token');
+                if (!token) {
+                    await sleep(800);
+                    await appendLine('sys', '[AUTH_FAILED] Tizimga kirmagansiz. Iltimos, yuqoridagi "Get Started" tugmasi orqali ro\'yxatdan o\'ting yoki kiring.', false, false);
+                    return;
                 }
+
+                // Determine user language via browser navigator
+                let userLang = 'uz'; // Default to Uzbek
 
                 // Contact Python Backend (Railway Server API)
                 const res = await fetch(`/api/v1/ai/chat`, {
@@ -216,20 +217,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         'accept': 'application/json',
                         'Content-Type': 'application/json',
                         'Idempotency-Key': 'demo-' + Math.random().toString(36).substring(7),
-                        'Authorization': 'Bearer mock-demo-token'
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({ message: message, model: "gpt-4o", language: userLang })
                 });
 
                 if (!res.ok) {
+                    if (res.status === 401) {
+                         throw new Error('Sessiya muddati tugadi yoki xato. Iltimos, qayta kiring.');
+                    }
                     const errorData = await res.json().catch(() => ({}));
-                    throw new Error(`Server returned ${res.status}: ${errorData.detail || errorData.message || 'Unknown'}`);
+                    throw new Error(errorData.detail || 'Noma\'lum xatolik');
                 }
 
                 const data = await res.json();
 
                 // Show Source
-                await appendLine('sys', `[ROUTER] Routed to: ${data.source}`, false, false);
+                await appendLine('sys', `[ROUTER] Routed to: ${data.target_engine || 'AI Engine'}`, false, false);
 
                 // Render based on structured response type
                 if (data.type === "video") {
