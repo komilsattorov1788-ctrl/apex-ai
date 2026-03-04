@@ -80,4 +80,4 @@ async def catch_all(full_path: str):
 if __name__ == "__main__":
     import uvicorn
     # Local tester
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
