@@ -47,7 +47,7 @@
                     </svg>
                 </div>
 
-                <a href="#join" class="btn btn-outline" style="border-radius: 50px; font-weight: 500; padding: 10px 24px; background: rgba(255,255,255,0.5);">Get Started</a>
+                <a href="#join" id="btn-auth-open" class="btn btn-outline" style="border-radius: 50px; font-weight: 500; padding: 10px 24px; background: rgba(255,255,255,0.5);">Get Started</a>
             </div>
         </div>
     </nav>
@@ -291,7 +291,56 @@
 
             </div>
         </div>
+        </div>
     </section>
+
+    <!-- Auth Modal Overlay -->
+    <div id="auth-modal" class="auth-overlay hidden">
+        <div class="auth-box">
+            <button class="auth-close" id="auth-close">&times;</button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-target="login-form">Kirish</button>
+                <button class="auth-tab" data-target="register-form">Ro'yxatdan o'tish</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <h3 style="text-align:center; margin-bottom: 20px; font-weight: 700;">Hush kelibsiz!</h3>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Sizning elektron pochtangiz" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" placeholder="Maxfiy so'z" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 8px;">Tizimga kirish</button>
+                <div class="auth-separator">Yoki</div>
+                <button type="button" class="btn btn-outline" style="width: 100%; border-radius: 8px; border-color: rgba(255,255,255,0.2);">
+                    <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" width="18" style="vertical-align: middle; margin-right: 8px;"> Google orqali
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form">
+                <h3 style="text-align:center; margin-bottom: 20px; font-weight: 700;">Yangi Hisob</h3>
+                <div class="input-group">
+                    <label>Ismingiz</label>
+                    <input type="text" placeholder="FISH" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Elektron pochta" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" placeholder="Kamida 8 belgi" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 8px;">Ro'yxatdan o'tish</button>
+            </form>
+        </div>
+    </div>
 
     <footer style="padding: 60px 0; border-top: 1px solid var(--glass-border); text-align: center;">
         <div class="container">

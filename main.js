@@ -395,4 +395,47 @@ document.addEventListener('DOMContentLoaded', () => {
             appearOnScroll.observe(element);
         });
     }
+
+    // --- Auth Modal Logic ---
+    const authOpenBtn = document.getElementById('btn-auth-open');
+    const authModal = document.getElementById('auth-modal');
+    const authCloseBtn = document.getElementById('auth-close');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const authForms = document.querySelectorAll('.auth-form');
+
+    if (authOpenBtn && authModal) {
+        authOpenBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            authModal.classList.add('active');
+        });
+    }
+
+    if (authCloseBtn) {
+        authCloseBtn.addEventListener('click', () => {
+            authModal.classList.remove('active');
+        });
+    }
+
+    // Close on clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === authModal) {
+            authModal.classList.remove('active');
+        }
+    });
+
+    // Tab switching
+    authTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active from all tabs
+            authTabs.forEach(t => t.classList.remove('active'));
+            // Remove active from all forms
+            authForms.forEach(f => f.classList.remove('active'));
+
+            // Set current active
+            tab.classList.add('active');
+            const targetId = tab.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
 });
