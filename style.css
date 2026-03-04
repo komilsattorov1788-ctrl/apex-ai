@@ -617,8 +617,8 @@ body {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .price-card {
@@ -636,9 +636,11 @@ body {
     transform: scale(1.05);
 }
 
-.price-card h3 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
-.price-amount { font-size: 3.5rem; font-weight: 800; margin-bottom: 12px; }
-.price-amount span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+.price-card h3 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; color: var(--text-main); }
+.price-amount { font-size: 3rem; font-weight: 800; margin-bottom: 5px; color: var(--text-main); }
+.price-amount span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: -5px; margin-bottom: 12px; }
+
+.price-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; min-height: 45px; }
 
 .price-features {
     list-style: none;
@@ -649,9 +651,17 @@ body {
 .price-features li {
     margin-bottom: 16px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.price-features li::before {
+    content: "✓";
+    color: var(--accent-cyan);
+    font-weight: bold;
 }
 
 /* --- Animations --- */
