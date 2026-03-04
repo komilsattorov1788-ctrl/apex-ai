@@ -124,8 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Auto scroll down
-            const mockupArea = document.querySelector('.terminal-mockup');
-            mockupArea.scrollTop = mockupArea.scrollHeight;
+            const mockupArea = document.getElementById('terminal-body');
+            if (mockupArea) {
+                mockupArea.scrollTop = mockupArea.scrollHeight;
+            }
             resolve();
         });
     }
