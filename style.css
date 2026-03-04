@@ -321,6 +321,17 @@ body {
     text-shadow: var(--neon-glow);
 }
 
+.lang-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.lang-selector select option {
+    background: var(--bg-deep);
+    color: var(--text-main);
+}
+
 /* --- AURA Hero Section --- */
 .aura-hero {
     min-height: 100vh;

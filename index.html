@@ -33,7 +33,20 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
-            <div class="nav-cta">
+            <div class="nav-cta" style="display: flex; align-items: center; gap: 15px;">
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <select id="language-select" style="background: transparent; border: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); cursor: pointer; outline: none; appearance: none; padding-right: 15px;">
+                        <option value="uz" selected>🇺🇿 UZ</option>
+                        <option value="en">🇬🇧 EN</option>
+                        <option value="ru">🇷🇺 RU</option>
+                    </select>
+                    <!-- Custom Arrow -->
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-main);">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+
                 <a href="#join" class="btn btn-outline" style="border-radius: 50px; font-weight: 500; padding: 10px 24px; background: rgba(255,255,255,0.5);">Get Started</a>
             </div>
         </div>
