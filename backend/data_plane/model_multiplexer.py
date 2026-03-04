@@ -134,6 +134,23 @@ async def _call_local_ollama(message: str, model: str, max_tokens: int) -> str:
         data = resp.json()
         return data.get("message", {}).get("content", "")
 
+async def _call_gemini(message: str, model: str, max_tokens: int) -> str:
+    import google.generativeai as genai
+    gemini_key = os.getenv("GEMINI_API_KEY", "")
+    if not gemini_key:
+        raise ValueError("GEMINI_API_KEY not configured")
+    
+    # Run in asyncio thread to unblock Data Plane as SDK isn't fully async
+    def sync_call():
+        genai.configure(api_key=gemini_key)
+        # Handle custom model ID mappings optionally
+        gemini_model = "models/gemini-1.5-flash" if "flash" in model else "models/gemini-1.5-pro"
+        generative_model = genai.GenerativeModel(gemini_model)
+        resp = generative_model.generate_content(message)
+        return resp.text
+
+    return await asyncio.to_thread(sync_call)
+
 
 # ─────────────────────────────────────────────
 # MULTIPLEXER
@@ -165,7 +182,7 @@ FAILOVER_CHAINS: dict[str, list[tuple[str, str]]] = {
 PROVIDER_CALLERS = {
     "openai":    _call_openai,
     "anthropic": _call_anthropic,
-    "google":    _call_openai, # Mocked via same interface for now
+    "google":    _call_gemini, # Native Gemini implementation
     "xai":       _call_openai,
     "local":     _call_local_ollama,
     "kling":     _call_openai,

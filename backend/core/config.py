@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     # Third-Party AI APIs (Will be loaded from .env)
     OPENAI_API_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
+    GEMINI_API_KEY: str = ""
     LUMA_API_KEY: str = "" # For Video Generation
     
     # Payment Gateways (Stripe Global)
