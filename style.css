@@ -402,9 +402,9 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
-.float-data { top: 10%; left: 10%; animation-delay: 0s; }
-.float-analyze { top: -5%; right: 10%; animation-delay: 2s; }
-.float-compute { bottom: 10%; right: 5%; animation-delay: 4s; }
+.float-data { top: 25%; left: 3%; animation-delay: 0s; }
+.float-analyze { top: 15%; right: 4%; animation-delay: 2s; }
+.float-compute { bottom: 25%; right: 5%; animation-delay: 4s; }
 
 /* AURA Bottom Cards */
 .aura-cards-grid {
