@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Cosmic Preloader Logic ---
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('cosmic-preloader');
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 600); // Artificial delay to enjoy the splash
+        }
+    });
+
     // Interactive Glow Effect for Cards
     const cards = document.querySelectorAll('.feature-card');
 
