@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex AI - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="theme-dark">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><span class="logo-icon">✨</span> Apex AI</h2>
+                <button class="new-chat-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Yangi Suhbat
+                </button>
+            </div>
+            
+            <div class="chat-history">
+                <div class="history-group">
+                    <span class="history-label">Bugun</span>
+                    <ul>
+                        <li class="active">Kvant hisoblash asoslari</li>
+                        <li>Sora video generatsiyasi ssenariysi</li>
+                    </ul>
+                </div>
+                <div class="history-group">
+                    <span class="history-label">Kecha</span>
+                    <ul>
+                        <li>Python FastAPI backend arxitekturasi</li>
+                        <li>Shartnoma tarjimasi (RU-UZ)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-plan-card">
+                    <div class="plan-info">
+                        <strong>Pro Tarif</strong> (Faol)
+                        <span>1,250 token qoldi</span>
+                    </div>
+                    <button class="upgrade-btn-small">Yangilash</button>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">U</div>
+                    <div class="user-details">
+                        <span id="user-name-display">Foydalanuvchi</span>
+                        <a href="index.html" id="logout-btn">Chiqish</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <div class="model-selector">
+                    <select id="ai-model-select">
+                        <option value="orchestrator">🤖 Universal Orchestrator (Tavsiya)</option>
+                        <option value="gpt-4o">⚡️ GPT-4o (OpenAI)</option>
+                        <option value="claude-3.5">🧠 Claude 3.5 Sonnet</option>
+                        <option value="gemini-1.5">🌐 Gemini 1.5 Pro</option>
+                        <option value="midjourney">🎨 Midjourney v6 (Tasvir)</option>
+                        <option value="sora">🎬 Sora (Video)</option>
+                    </select>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" title="Ulashish"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+                    <button class="icon-btn" title="Sozlamalar"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+                </div>
+            </header>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome State -->
+                <div class="welcome-screen">
+                    <div class="welcome-icon">✨</div>
+                    <h1>Bugun sizga qanday yordam bera olaman?</h1>
+                    
+                    <div class="suggestion-cards">
+                        <div class="suggestion-card">
+                            <span>Sora orqali Video</span>
+                            <p>Kino darajasidagi 4K reklama roligi ssenariyi va videosini yaratish</p>
+                        </div>
+                        <div class="suggestion-card">
+                            <span>Kodni Tahlil Qilish</span>
+                            <p>Python skriptimdagi xatoliklarni topish va optimallashtirish</p>
+                        </div>
+                        <div class="suggestion-card">
+                            <span>Muloqot tili</span>
+                            <p>Rus tilida biznes muzokaralar matnini yozib berish</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <form id="dashboard-chat-form" class="chat-input-wrapper">
+                    <input type="file" id="attach-file" hidden multiple>
+                    <button type="button" class="action-btn" id="btn-attach" title="Fayl biriktirish">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                    </button>
+                    <textarea id="chat-textarea" placeholder="Xabaringizni yozing yoki '/' orqali buyruqlarni ko'ring..." rows="1"></textarea>
+                    
+                    <div class="right-actions">
+                        <button type="button" class="action-btn btn-voice" title="Ovozli kirish">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </button>
+                        <button type="submit" class="submit-btn" id="btn-send">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </form>
+                <div class="disclaimer">
+                    Apex AI noto'g'ri ma'lumot berishi mumkin. Muhim ma'lumotlarni tekshiring.
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>
