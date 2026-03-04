@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from api import ai_router, payment_router
+from api import ai_router, payment_router, auth_router
 from core.config import get_settings
 from database.database import Base, master_engine
 from database import models # Force model registration
@@ -52,6 +52,7 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 # Core Routers
+app.include_router(auth_router.router, prefix=settings.API_V1_STR + "/auth", tags=["authentication"])
 app.include_router(ai_router.router, prefix=settings.API_V1_STR + "/ai", tags=["ai_models"])
 app.include_router(payment_router.router, prefix=settings.API_V1_STR + "/payments", tags=["billing_stripe"])
 

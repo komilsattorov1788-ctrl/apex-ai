@@ -438,4 +438,87 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Handle Registration
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const btn = registerForm.querySelector('button[type="submit"]');
+
+            const prevText = btn.innerText;
+            btn.innerText = 'Kuting...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/v1/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ full_name: fullName, email, password })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    alert('Muvaffaqiyatli ro\'yxatdan o\'tdingiz! Endi tizimga kiring.');
+                    // Switch to login tab
+                    document.querySelector('.auth-tab[data-target="login-form"]').click();
+                    registerForm.reset();
+                } else {
+                    alert('Xato: ' + (data.detail || 'Noma\'lum xato yuz berdi'));
+                }
+            } catch (err) {
+                alert('Server bilan bog\'lanishda xato: ' + err.message);
+            } finally {
+                btn.innerText = prevText;
+                btn.disabled = false;
+            }
+        });
+    }
+
+    // Handle Login
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const btn = loginForm.querySelector('button[type="submit"]');
+
+            const prevText = btn.innerText;
+            btn.innerText = 'Kuting...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    // Save JWT token
+                    localStorage.setItem('apex_ai_token', data.access_token);
+                    alert('Xush kelibsiz! Tizimga muvaffaqiyatli kirdingiz.');
+                    authModal.classList.remove('active');
+                    loginForm.reset();
+                    // Optional: Update UI to show logged-in state (e.g. Change "Get Started" to "Dashboard")
+                    if (authOpenBtn) {
+                        authOpenBtn.innerText = 'Dashboard';
+                        authOpenBtn.href = '#product';
+                    }
+                } else {
+                    alert('Xato: ' + (data.detail || 'Noto\'g\'ri parol yoki email'));
+                }
+            } catch (err) {
+                alert('Server bilan bog\'lanishda xato: ' + err.message);
+            } finally {
+                btn.innerText = prevText;
+                btn.disabled = false;
+            }
+        });
+    }
+
 });

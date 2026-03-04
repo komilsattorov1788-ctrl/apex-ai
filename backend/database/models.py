@@ -12,6 +12,17 @@ class LedgerOperation(str, enum.Enum):
     REFUND = 'refund'
     DEPOSIT = 'deposit'
 
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    full_name = Column(String(255), nullable=False)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
+    is_active = Column(Integer, default=1)
+    tier = Column(String(50), default="free") # free, plus, pro, premium
+
 class TransactionLedger(Base):
     """
     10/10 Enterprise Bank-Grade Architecture: Double-Entry Immutable Ledger!
