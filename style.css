@@ -397,19 +397,19 @@ body {
 /* Floating Images (Data, Analyze, Compute) */
 .floating-img {
     position: absolute;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    padding: 10px 16px;
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    padding: 16px 28px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    color: #333;
-    font-size: 0.8rem;
-    font-weight: 600;
+    gap: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    color: #111;
+    font-size: 1.1rem;
+    font-weight: 800;
     animation: float 6s ease-in-out infinite;
 }
 
