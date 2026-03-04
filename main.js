@@ -118,16 +118,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function parseMarkdown(text) {
+        // Convert Markdown to HTML for Rich Media Responses
+        let html = text;
+        // Bold
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Inline Code
+        html = html.replace(/`(.*?)`/g, '<code style="background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px; color: #ffeb3b;">$1</code>');
+        // Multiline Code Blocks
+        html = html.replace(/```([\s\S]*?)```/g, '<pre style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--glass-border); color: #fff; margin: 10px 0;"><code>$1</code></pre>');
+        // Lists
+        html = html.replace(/^- (.*)$/gm, '<li style="margin-left: 20px;">$1</li>');
+        return html;
+    }
+
     if (terminalInputArea) {
+        // Handle Multimodal File Visual Feedback
+        const fileInput = document.getElementById('file-upload');
+        const attachmentBtn = document.querySelector('.attachment-btn');
+        let attachedFiles = [];
+
+        if (fileInput && attachmentBtn) {
+            fileInput.addEventListener('change', (e) => {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    attachedFiles = files;
+                    attachmentBtn.style.color = '#00f0ff'; // Highlight cyan
+                    attachmentBtn.style.opacity = '1';
+                    // Optional: tooltip update
+                    attachmentBtn.setAttribute('title', `${files.length} fayl biriktirildi.`);
+                } else {
+                    attachedFiles = [];
+                    attachmentBtn.style.color = 'inherit';
+                    attachmentBtn.style.opacity = '0.6';
+                    attachmentBtn.setAttribute('title', 'Rasm yoki fayl biriktirish');
+                }
+            });
+        }
+
         terminalInputArea.addEventListener('submit', async (e) => {
             e.preventDefault();
             const message = terminalInput.value.trim();
-            if (!message) return;
+            if (!message && attachedFiles.length === 0) return;
 
             terminalInput.value = ''; // clear
+            
+            // 1. Show User Message (with attachment info)
+            let userMsgDisplay = message;
+            if (attachedFiles.length > 0) {
+                userMsgDisplay += ` <span style="color:#00f0ff; font-size:0.8rem;">[📎 ${attachedFiles.length} file(s) attached]</span>`;
+            }
+            // Clear attachments visually after send
+            if (fileInput) fileInput.value = '';
+            attachedFiles = [];
+            if (attachmentBtn) {
+                attachmentBtn.style.color = 'inherit';
+                attachmentBtn.style.opacity = '0.6';
+            }
 
-            // 1. Show User Message
-            await appendLine('user', message, false, false);
+            await appendLine('user', userMsgDisplay, true, false);
 
             // 2. Show System thinking with Orchestration
             await appendLine('sys', '[ORCHESTRATOR] Connecting to Universal AI Mesh...', false, false);
@@ -191,10 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     await appendLine('agent', imageHtml, true, false);
                 } else {
-                    // Type regular text response
-                    await appendLine('agent', data.content, false, true);
+                    // Type regular text response (Now supporting Rich Media Markdown)
+                    const parsedContent = parseMarkdown(data.content);
+                    await appendLine('agent', parsedContent, true, false); // true for HTML to inject nodes, false for typing to display parsed immediately 
                 }
-
             } catch (err) {
                 await appendLine('sys', `[ERROR] Connection failed: ${err.message}`, false, false);
             }
