@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex AI - Admin Boshqaruv Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="theme-dark">
+    <div class="admin-container">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <span class="logo-shield">🛡️</span>
+                <h2>Apex Admin</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#dashboard" class="nav-item active">📊 Umumiy Statistika</a>
+                <a href="#users" class="nav-item">👥 Foydalanuvchilar</a>
+                <a href="#billing" class="nav-item">💳 To'lovlar (Billing)</a>
+                <a href="#api-keys" class="nav-item">🔑 API Kalitlar</a>
+                <a href="#security" class="nav-item">🔒 Xavfsizlik (Logs)</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="index.html" class="nav-item back-link">← Saytga qaytish</a>
+            </div>
+        </aside>
+
+        <!-- Main Content (Baza/Boshqaruv) -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div>
+                    <h1>Boshqaruv Markazi</h1>
+                    <p class="subtitle">Tizim holati va ma'lumotlar bazasi zaxirasi.</p>
+                </div>
+                <div class="header-actions">
+                    <span class="status-badge pulse-green">Tizim Faol</span>
+                    <button class="btn btn-primary" id="refresh-db-btn">🔄 Bazani Yangilash</button>
+                    <div class="admin-avatar">A</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <section id="dashboard" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Jami Foydalanuvchilar</h3>
+                        <div class="stat-value">1,204</div>
+                        <div class="stat-trend positive">↑ 12% o'sish (Oylik)</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Oylik Daromad (Moyliq)</h3>
+                        <div class="stat-value">$4,520</div>
+                        <div class="stat-trend positive">↑ 8% o'sish (Stripe/Payme)</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>API Sarf-xarajatlar</h3>
+                        <div class="stat-value">$840</div>
+                        <div class="stat-trend negative">↓ 3% tejamkorlik</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Jami Tokenlar Yüki</h3>
+                        <div class="stat-value">18.5M</div>
+                        <div class="stat-trend">Standard yuklama</div>
+                    </div>
+                </div>
+
+                <!-- Users Database Table Layout -->
+                <div class="table-container mt-40">
+                    <div class="table-header">
+                        <h2>Foydalanuvchilar Bazasi (So'nggi ro'yxatdan o'tganlar)</h2>
+                        <input type="text" placeholder="Email yoki Ism orqali qidirish..." class="search-input">
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>F.I.SH</th>
+                                <th>Email</th>
+                                <th>Tarif Turi</th>
+                                <th>Ro'yxatdan o'tdi</th>
+                                <th>Status</th>
+                                <th>Harakatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- JS orqali to'ldiriladi -->
+                            <tr>
+                                <td>#8819</td>
+                                <td>Alisher Rustamov</td>
+                                <td>alisher.r@gmail.com</td>
+                                <td><span class="badge badge-pro">Pro ($9)</span></td>
+                                <td>24.03.2026</td>
+                                <td><span class="status-dot green"></span> Faol</td>
+                                <td><button class="action-btn">Tahrir</button></td>
+                            </tr>
+                            <tr>
+                                <td>#8820</td>
+                                <td>Gulnoza Karimova</td>
+                                <td>g.karim22@mail.ru</td>
+                                <td><span class="badge badge-free">Free ($0)</span></td>
+                                <td>24.03.2026</td>
+                                <td><span class="status-dot green"></span> Faol</td>
+                                <td><button class="action-btn">Tahrir</button></td>
+                            </tr>
+                            <tr>
+                                <td>#8821</td>
+                                <td>Murod Jo'rayev</td>
+                                <td>m.jorayev_corp@yandex.com</td>
+                                <td><span class="badge badge-premium">Premium ($19)</span></td>
+                                <td>23.03.2026</td>
+                                <td><span class="status-dot green"></span> Faol</td>
+                                <td><button class="action-btn">Tahrir</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
