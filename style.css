@@ -635,17 +635,18 @@ body {
 }
 
 .price-card {
-    background: rgba(15, 15, 20, 0.5);
+    background: var(--bg-card);
     border: 1px solid var(--glass-border);
     padding: 48px;
     border-radius: 32px;
     text-align: center;
     transition: var(--transition-smooth);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
 
 .price-card.featured {
     border-color: var(--accent-purple);
-    background: rgba(176, 38, 255, 0.05);
+    background: radial-gradient(circle at top, rgba(176, 38, 255, 0.1), var(--bg-card));
     transform: scale(1.05);
 }
 
